@@ -3,7 +3,6 @@ version: "3.9"
 services:
   nginx:
     image: "nginx:stable-alpine"
-    container_name: nginx
     ports:
       - "${NGINX_PORT}:${NGINX_PORT}"
     volumes:
@@ -16,12 +15,10 @@ services:
     build:
       context: php
       dockerfile: Dockerfile
-    container_name: php
     volumes:
       - ./src:/var/www/laravel
   mysql:
     image: mysql:8.0
-    container_name: mysql
     ports:
       - "${MYSQL_PORT}:${MYSQL_PORT}"
     environment:
