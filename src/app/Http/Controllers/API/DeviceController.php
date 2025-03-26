@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\API\DeviceResourceCollection;
 use App\Models\API\DeviceModel;
 use Illuminate\Http\Request;
 
@@ -17,7 +18,7 @@ class DeviceController extends Controller
 
     public function getAll()
     {
-        return $this->deviceModel->all();
+        return new DeviceResourceCollection(DeviceModel::all());
     }
 
     public function getOne(string $id)
