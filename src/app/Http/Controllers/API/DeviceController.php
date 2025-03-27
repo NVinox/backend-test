@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Exceptions\API\DeviceNotFoundException;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\API\DeviceResource;
 use App\Http\Resources\API\DeviceResourceCollection;
@@ -25,6 +26,11 @@ class DeviceController extends Controller
     public function getOne(string $id)
     {
         $device = DeviceModel::find($id);
+
+        if (!$device) {
+            return throw new DeviceNotFoundException();
+        }
+
         return (new DeviceResource($device))->response()->setStatusCode(200);
     }
 
@@ -58,6 +64,11 @@ class DeviceController extends Controller
     public function update(Request $request, string $id)
     {
         $device = $this->deviceModel->find($id);
+
+        if (!$device) {
+            return throw new DeviceNotFoundException();
+        }
+
         $device->update($request->all());
         return $device;
     }
@@ -65,6 +76,11 @@ class DeviceController extends Controller
     public function delete(string $id)
     {
         $device = $this->deviceModel->find($id);
+
+        if (!$device) {
+            return throw new DeviceNotFoundException();
+        }
+
         return $device->delete();
     }
 }
