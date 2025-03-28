@@ -31,7 +31,7 @@ class DeviceResource extends JsonResource
     public function with(Request $request)
     {
         return [
-            'status' => 'success',
+            'success' => true,
         ];
     }
 

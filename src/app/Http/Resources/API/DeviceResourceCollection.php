@@ -18,7 +18,7 @@ class DeviceResourceCollection extends ResourceCollection
     public function with(Request $request)
     {
         return [
-            'status' => 'success'
+            'success' => true
         ];
     }
 

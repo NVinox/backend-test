@@ -17,7 +17,7 @@ class DeviceNotFoundException extends Exception
             'error' => [
                 'message' => $this->message,
                 'type' => 'notFound',
-                'code' => 404,
+                'code' => $this->code,
             ]
         ], $this->code);
     }
